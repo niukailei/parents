@@ -1,0 +1,33 @@
+server:
+  port: 8010
+spring:
+  application:
+    name: feign-clients
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: niukailei
+    password: niukailei
+  cloud:
+    config:
+      discovery:
+        enabled: false
+        service-id: config-server
+      profile: native
+    stream:
+      bindings:
+        input1:
+          destination: Theme-Animal
+          #group: Group-Boy
+          content-type: application/json
+        input2:
+          destination: Theme-People
+          #group: Group-Girl
+          content-type: application/json
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+management:
+  security:
+    enabled: false

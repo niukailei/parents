@@ -1,0 +1,31 @@
+server:
+  port: 8087
+spring:
+  application:
+    name: one-clients
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: niukailei
+    password: niukailei
+    virtual-host: /
+  cloud:
+    stream:
+      bindings:
+        tiantian:
+          destination: Theme-People #这个需要发布者-订阅者一致才行, 才能在一个通道内
+          group: Group-Boy
+          content-type: application/json
+        huihui:
+          destination: Theme-People
+          group: Group-Girl
+          content-type: application/json
+        input:
+          content-type: application/json
+          #producer: #设置分区键的表达式规则和设置消息分区数量
+            #partitionKeyExpression: headers['partitionKey']
+            #partitionCount: 2
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
